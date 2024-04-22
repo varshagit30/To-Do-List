@@ -6,7 +6,7 @@ import { TiArrowDownThick } from "react-icons/ti";
 import "./index.css";
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState(["Do laundry", "Walk the dog"]);
+  const [tasks, setTasks] = useState(["Do laundry", "Walk the dog", "Clean the room"]);
   const [newTask, setNewTask] = useState("");
   const [done, setDone] = useState(false);
 
@@ -36,7 +36,7 @@ const ToDoList = () => {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-    }
+    } else alert("This task is already at the top! ");
   };
 
   const moveTaskDown = (index) => {
@@ -47,7 +47,7 @@ const ToDoList = () => {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-    }
+    } else alert("This task is already at the bottom! ");
   };
 
   const handleCheckBoxChange = (index) => {
@@ -91,11 +91,20 @@ const ToDoList = () => {
           >
             {task}
           </span>
-          <FaRegTrashAlt className="delBtn" onClick={() => deleteTask(index)} />
-          <TiArrowUpThick className="upBtn" onClick={() => moveTaskUp(index)} />
+          <FaRegTrashAlt
+            className="delBtn"
+            onClick={() => deleteTask(index)}
+            title="Delete"
+          />
+          <TiArrowUpThick
+            className="upBtn"
+            onClick={() => moveTaskUp(index)}
+            title="Move Up"
+          />
           <TiArrowDownThick
             className="downBtn"
             onClick={() => moveTaskDown(index)}
+            title="Move Down"
           />
         </div>
       ))}
