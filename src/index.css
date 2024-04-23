@@ -35,12 +35,15 @@ h1{
   background-color: rgb(0, 25, 17)
 }
 
- /* .checkBox input[type="checkbox"]  {
-  font-size: larger;
-  padding: 10px 10px;
-} */
+.not-checked-item{
+  color: #ffffff;
+  font-size: x-large;
+  align-items: center;
+  justify-content: center;
+}
 
-.taskText{
+.checked-item {
+  text-decoration: line-through;
   color: #ffffff;
   font-size: x-large;
   align-items: center;
