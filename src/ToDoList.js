@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "./index.css";
 
@@ -30,6 +32,9 @@ const ToDoList = () => {
     setTasks(updatedTasks);
   };
 
+  const notifyTop = () => toast.error("This task is already at the top!");
+  const notifyBottom = () => toast.error("This task is already at the bottom!");
+
   const moveTaskUp = (index) => {
     if (index > 0) {
       const updatedTasks = [...tasks];
@@ -38,7 +43,7 @@ const ToDoList = () => {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-    } else alert("This task is already at the top! ");
+    } else notifyTop();
   };
 
   const moveTaskDown = (index) => {
@@ -49,7 +54,7 @@ const ToDoList = () => {
         updatedTasks[index],
       ];
       setTasks(updatedTasks);
-    } else alert("This task is already at the bottom! ");
+    } else notifyBottom();
   };
 
   const handleCheckBoxChange = (event) => {
@@ -59,7 +64,6 @@ const ToDoList = () => {
     } else {
       updatedList.splice(checked.indexOf(event.target.value), 1);
     }
-    console.log("event.target.checked", updatedList);
     setChecked(updatedList);
   };
 
@@ -105,15 +109,16 @@ const ToDoList = () => {
           <TiArrowUpThick
             className="upBtn"
             onClick={() => moveTaskUp(index)}
-            title="Move Up"
+            title="Move Task Up"
           />
           <TiArrowDownThick
             className="downBtn"
             onClick={() => moveTaskDown(index)}
-            title="Move Down"
+            title="Move Task Down"
           />
         </div>
       ))}
+      <ToastContainer />
     </>
   );
 };
