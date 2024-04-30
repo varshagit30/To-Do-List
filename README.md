@@ -1,3 +1,5 @@
+This is a simple yet effective To Do List Web App built with HTML, CSS, and React.js. It allows you to manage your tasks and stay organized. You can add, mark as completed, and delete tasks effortlessly.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
