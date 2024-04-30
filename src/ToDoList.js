@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { TiArrowUpThick } from "react-icons/ti";
 import { TiArrowDownThick } from "react-icons/ti";
@@ -8,11 +8,18 @@ import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 
 const ToDoList = () => {
-  const [tasks, setTasks] = useState([
-    "Do laundry",
-    "Walk the dog",
-    "Clean the room",
-  ]);
+  const getLocalItems = () => {
+    let listItems = localStorage.getItem("tasks");
+    console.log("list:  ",listItems)
+
+    if (listItems) {
+      return JSON.parse(localStorage.getItem("tasks"));
+    } else {
+      return [];
+    }
+  };
+
+  const [tasks, setTasks] = useState(getLocalItems());
   const [newTask, setNewTask] = useState("");
   const [checked, setChecked] = useState([]);
 
@@ -66,6 +73,10 @@ const ToDoList = () => {
     }
     setChecked(updatedList);
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const isChecked = (item) =>
     checked.includes(item) ? "checked-item" : "not-checked-item";
